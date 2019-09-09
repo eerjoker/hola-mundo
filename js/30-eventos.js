@@ -27,6 +27,9 @@ window.addEventListener('load', () => {
 	// Click
 	boton.addEventListener('click', function(){
 		cambiarColor()
+		//boton.style.border = "10px solid black"
+		console.log (this)
+		this.style.border = "10px solid black" // con this hago referencia al boton, se usa en vez de poner la variable en si.
 	})
 
 	// Doble Click
