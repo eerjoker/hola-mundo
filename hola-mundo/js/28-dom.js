@@ -72,6 +72,6 @@ console.log(id)
 var claseRojo = document.querySelector("div.rojo")
 console.log(claseRojo)
 
-// Para esose usa el .querySelectorAll
+// Para eso se usa el .querySelectorAll
 var etiqueta = document.querySelectorAll("div")
 console.log(etiqueta)
