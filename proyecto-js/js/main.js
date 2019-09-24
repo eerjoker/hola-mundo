@@ -80,6 +80,9 @@ $(document).ready(function(){
 
 	var theme_storage = localStorage.getItem("theme") 
 	theme.attr("href", theme_storage)
+	if(theme_storage == null){
+		theme.attr("href", "css/green.css")
+	}
 
 	// Scroll arriba de la web
 	$('.subir').click(function(e){
@@ -115,7 +118,6 @@ $(document).ready(function(){
 	}
 
 	// Acordeón
-
 	if(window.location.href.indexOf('about')>-1){
 		$("#acordeon").accordion()
 	}
