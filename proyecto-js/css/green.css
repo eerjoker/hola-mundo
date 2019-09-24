@@ -1,0 +1,21 @@
+body{
+	background: url('../img/hojas.jpg'); /*El ../ es para acceder a la carpeta anterior*/
+	background-attachment: fixed;
+}
+
+#logo{
+	background: #235E3D;
+}
+
+#menu ul li:hover{
+	background: #235E3D;
+}
+
+.button-more{
+	background: #235E3D;
+}
+
+.ui-accordion-header.ui-state-active{
+	background: #235E3D;
+	border: none;
+}
