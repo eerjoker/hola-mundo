@@ -28,15 +28,15 @@ export class VideojuegoComponent implements OnInit, DoCheck, OnDestroy {
 	}
 
 	ngOnInit(){
-		console.log("OnInit ejecutado!")
+		//console.log("OnInit ejecutado!")
 	}// este hook se ejecuta al cargar el componente
 
 	ngDoCheck(){
-		console.log("DoCheck ejecutado")
+		//console.log("DoCheck ejecutado")
 	}// se ejecuta cada vez que hay un cambio en el componente o en la aplicación de angular
 
 	ngOnDestroy(){
-		console.log("OnDestroy ejecutado")
+		//console.log("OnDestroy ejecutado")
 	}// se ejectua antes de eliminar el componente
 
 	cambiarTitulo(){
