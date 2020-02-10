@@ -3,36 +3,55 @@ import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project.service';
 import { UploadService } from '../../services/upload.service';
 import { Global } from '../../services/global';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-	selector: 'app-create',
-	templateUrl: './create.component.html',
-	styleUrls: ['./create.component.css'],
-	providers: [ProjectService, UploadService]
+  selector: 'app-edit',
+  templateUrl: '../create/create.component.html',
+  styleUrls: ['./edit.component.css'],
+  providers: [ProjectService, UploadService]
 })
-export class CreateComponent implements OnInit {
-
+export class EditComponent implements OnInit {
+	
 	public title: string;
 	public project: Project;
 	public save_project;
 	public status: string;
 	public filesToUpload: Array<File>;
+	public url: string;
 
 	constructor(
 		private _projectService: ProjectService,
-		private _uploadService: UploadService
+		private _uploadService: UploadService,
+		private _route: ActivatedRoute,
+		private _router: Router
+
 	){
-		this.title = "Crear proyecto";
-		this.project = new Project('', '', '', '', 2020, '', '');
+		this.title = "Editar proyecto";
+		this.url = Global.url;
 	}
 
-	ngOnInit() {
+	ngOnInit(){
+		this._route.params.subscribe(params => {
+			let id = params.id;
+
+			this.getProject(id);
+		});
 	}
 
-	onSubmit(form){
+	getProject(id){
+		this._projectService.getProject(id).subscribe(
+			response => {
+				this.project = response.project;
+			},
+			error => {
+				console.log(<any>error);
+			}
+		);
+	}
 
-		// Guardar datos básicos
-		this._projectService.saveProject(this.project).subscribe(
+	onSubmit(){
+		this._projectService.updateProject(this.project).subscribe(
 			response => {
 				if(response.project){
 					
@@ -42,19 +61,17 @@ export class CreateComponent implements OnInit {
 						.then((result:any) => {
 							this.save_project = result.project;
 							this.status = "success";
-							form.reset();
 						});
 					}else{
 						this.save_project = response.project;
 						this.status = "success";
-						form.reset();
 					}
 				}else{
 					this.status = "failed";
 				};
 			},
 			error => {
-				console.log(<any>error);
+				console.log(<any>error)
 			}
 		);
 	}
@@ -62,5 +79,4 @@ export class CreateComponent implements OnInit {
 	fileChangeEvent(fileInput: any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 	}
-
 }
